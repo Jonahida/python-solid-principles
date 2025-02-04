@@ -65,7 +65,7 @@ project = Project(team)
 print(project.develop())  # Output: Writing backend code... Writing frontend code...
 ```
 
-## Why is this better(Follows ISP)
+## Why is this better
 
 - **Abstractions over concrete implementations**: The `Project` class now depends on the `Developer` abstraction (an interface or base class), not on the concrete `BackendDeveloper` or `FrontendDeveloper`.
 
