@@ -68,13 +68,15 @@ class Robot(Workable):
         return "I'm working!"
 ```
 
-- We separate flying and non-flying birds.
+- We separate concerns into distinct interfaces:
 
-- `FlyingBird` has a fly method, so Sparrow correctly inherits from it.
+    - `Workable` for objects that can work.
 
-- `Penguin` does not inherit from `FlyingBird`, so it does not have an incorrect `fly()` method.
+    - `Eatable` for objects that can eat.
 
-- Now, all subclasses correctly extend their parents, following **LSP**.
+- **Robot** only implements the `Workable` interface, avoiding the unnecessary `eat()` method.
+
+- By using smaller, more specific interfaces, each class only implements what it actually needs, following **ISP**.
 
 ## Key Takeaways
 
