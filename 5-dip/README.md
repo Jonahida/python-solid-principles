@@ -132,6 +132,10 @@ class Parser(ABC):
     def parse(self):
         pass
 
+class XMLParser:
+    def parse(self):
+        pass
+
 class JSONParser(Parser):
     def parse(self):
         pass
