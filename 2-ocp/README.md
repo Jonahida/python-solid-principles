@@ -1,7 +1,9 @@
 # Open/Closed Principle (OCP)
 
 ## Definition
+
 *"Software entities should be open for extension but closed for modification."*
+
 This means that adding new functionality **should not** require modifying existing code.
 
 ---
@@ -21,7 +23,9 @@ class DiscountCalculator:
 ## What’s Wrong?
 
 The `DiscountCalculator` class directly handles all discount logic based on the customer type. As a result:
+
 - Adding a new discount type requires modifying the existing `DiscountCalculator` class.
+
 - If more conditions (like different customer types or new discount rules) are added, the `calculate` method will become longer and harder to maintain.
 
 This violates the **Open/Closed Principle** because we are modifying the class instead of extending its functionality.
@@ -75,71 +79,6 @@ print(discount.calculate(100))  # Output: 80.0
 - This principle reduces the risk of **regression bugs** when new features are added and makes the system more maintainable in the long run.
 
 ---
-
-### Additional Examples:
-
-1. **Bad Example:**
-   A `User` class that handles both user data and sending notification emails:
-
-```python
-   class User:
-       def __init__(self, name: str, email: str):
-           self.name = name
-           self.email = email
-
-       def send_email(self, subject: str, message: str):
-           # Code to send email
-           pass
-```
-
-- **What's wrong?**: This class is responsible for both storing user data and handling email sending, which violates SRP.
-
-**Good Example**: Separate the concerns into different classes:
-
-```python
-class User:
-    def __init__(self, name: str, email: str):
-        self.name = name
-        self.email = email
-
-class EmailSender:
-    def send_email(self, user: User, subject: str, message: str):
-        # Code to send email to user
-        pass
-```
-
-- **Why is this better?**: The `User` class only stores user data, and the `EmailSender` class handles the email functionality. This separation of concerns adheres to SRP, making both classes easier to maintain.
-
-2. **Bad Example**: A `Book` class that handles both book data and printing reports:
-
-```python
-class Book:
-    def __init__(self, title: str, author: str, pages: int):
-        self.title = title
-        self.author = author
-        self.pages = pages
-
-    def print_report(self):
-        print(f"Book: {self.title} by {self.author}")
-        print(f"Pages: {self.pages}")
-```
-
-**Good Example**: Separate the printing logic into a different class:
-
-```python
-class Book:
-    def __init__(self, title: str, author: str, pages: int):
-        self.title = title
-        self.author = author
-        self.pages = pages
-
-class ReportPrinter:
-    def print_report(self, book: Book):
-        print(f"Book: {book.title} by {book.author}")
-        print(f"Pages: {book.pages}")
-```
-
-- **Why is this better?**: The `Book` class now only contains book-related data, and the `ReportPrinter` class is responsible for printing the report. This makes each class focused on a single responsibility.
 
 ## Additional Examples
 
